@@ -1,0 +1,80 @@
+{
+  "name": "@dnd-tracker/server",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:watch": "concurrently -n GQL,Code \"nodemon --config nodemon-dev.json\"",
+    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
+    "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
+    "start:prod": "node dist/main.js",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ../node_modules/typeorm/cli.js",
+    "migration:gen": "yarn typeorm migration:generate -n",
+    "migration:latest": "yarn typeorm migration:run",
+    "migration:rollback": "yarn typeorm migration:revert"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.10.12",
+    "@nestjs/core": "^6.10.12",
+    "@nestjs/graphql": "^6.5.3",
+    "@nestjs/platform-express": "^6.0.0",
+    "@nestjs/typeorm": "^6.2.0",
+    "apollo-server-express": "^2.9.14",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.6",
+    "graphql-type-json": "^0.3.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^2.6.2",
+    "rxjs": "^6.5.3",
+    "sqlite3": "^4.1.1",
+    "type-graphql": "^0.17.5",
+    "typeorm": "^0.2.21",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^6.0.0",
+    "@types/express": "4.16.1",
+    "@types/graphql-type-json": "^0.3.2",
+    "@types/jest": "24.0.11",
+    "@types/node": "11.13.4",
+    "@types/sqlite3": "^3.1.5",
+    "@types/supertest": "2.0.7",
+    "@types/uuid": "^3.4.6",
+    "concurrently": "^5.0.2",
+    "eslint": "^6.7.2",
+    "jest": "24.7.1",
+    "prettier": "1.17.0",
+    "supertest": "4.0.2",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
+    "tsc-watch": "2.2.1",
+    "tsconfig-paths": "3.8.0",
+    "typescript": "3.4.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

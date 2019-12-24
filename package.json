@@ -1,0 +1,45 @@
+{
+  "name": "dnd-tracker",
+  "private": true,
+  "workspaces": [
+    "*"
+  ],
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "jest-junit": "^7.0.0",
+    "lint-staged": "^9.2.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "server": "yarn workspace @dnd-tracker/server",
+    "web-app": "yarn workspace @dnd-tracker/web-app",
+    "pushHook": "npm-run-all -p \"lint:server --quiet\" \"lint:web-app --quiet\"",
+    "commitHook": "lint-staged",
+    "start:server": "yarn server start:watch",
+    "start:web-app": "yarn web-app start",
+    "genEnv": "ts-node scripts/genEnv.ts",
+    "lint:server": "eslint ./server --ext ts -c server/.eslintrc.js --ignore-path .eslintignore",
+    "lint:web-app": "eslint ./web-app --ext js,ts,tsx -c web-app/.eslintrc.js --ignore-path .eslintignore"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn commitHook",
+      "pre-push": "yarn pushHook"
+    }
+  }
+}

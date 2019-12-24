@@ -1,0 +1,9 @@
+public/**
+*.d.ts
+server/dist
+server/ormconfig*
+server/src/graphql/schema.ts
+*.test.*
+web-app/src/api/gen/**
+web-app/build/**
+web-app/*.config.js

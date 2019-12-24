@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "removeComments": true,
+    "noLib": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["types/*"]
+    },
+    "strictPropertyInitialization": false
+  },
+  "exclude": ["node_modules", "*.test.tsx", "*.test.ts", "dist"],
+  "compileOnSave": true
+}
