@@ -3,11 +3,12 @@ import { Repository } from 'typeorm'
 import { PcEntity } from './pc.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import {
-  CharacterBaseInput,
   AddPcInput,
   AddNpcInput,
   AddMonsterInput,
   EditPcInput,
+  EditNpcInput,
+  EditMonsterInput,
 } from './character.input'
 import { NpcEntity } from './npc.entity'
 import { MonsterEntity } from './monster.entity'
@@ -51,11 +52,15 @@ export class CharacterService {
     return this.npcRepository.find()
   }
 
+  async nonPlayerCharacterById(id: number): Promise<NpcEntity> {
+    return this.npcRepository.findOneOrFail(id)
+  }
+
   async addNPC(input: AddNpcInput): Promise<NpcEntity> {
     return this.npcRepository.save(this.npcRepository.create({ ...input }))
   }
 
-  async editNPC(input: CharacterBaseInput): Promise<NpcEntity> {
+  async editNPC(input: EditNpcInput): Promise<NpcEntity> {
     return this.npcRepository.save({ ...input })
   }
 
@@ -70,11 +75,15 @@ export class CharacterService {
     return this.monsterRepository.find()
   }
 
+  async monsterById(id: number): Promise<MonsterEntity> {
+    return this.monsterRepository.findOneOrFail(id)
+  }
+
   async addMonster(input: AddMonsterInput): Promise<MonsterEntity> {
     return this.monsterRepository.save(this.monsterRepository.create({ ...input }))
   }
 
-  async editMonster(input: CharacterBaseInput): Promise<MonsterEntity> {
+  async editMonster(input: EditMonsterInput): Promise<MonsterEntity> {
     return this.monsterRepository.save({ ...input })
   }
 

@@ -35,5 +35,6 @@ export const PcSeed: PcEntity[] = [
       actionDescription: 'Make one Unarmed Strike as a Bonus Action.',
     },
     description: '',
+    playerName: '',
   },
 ]

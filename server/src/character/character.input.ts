@@ -205,7 +205,7 @@ export class EditPcInput extends EditCharacterBaseInput {
 }
 
 @InputType()
-export class EditNpcInput extends CharacterBaseInput {}
+export class EditNpcInput extends EditCharacterBaseInput {}
 
 @InputType()
-export class EditMonsterInput extends CharacterBaseInput {}
+export class EditMonsterInput extends EditCharacterBaseInput {}
