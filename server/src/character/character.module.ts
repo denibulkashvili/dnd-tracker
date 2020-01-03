@@ -9,6 +9,5 @@ import { MonsterEntity } from './monster.entity'
 @Module({
   imports: [TypeOrmModule.forFeature([PcEntity, NpcEntity, MonsterEntity])],
   providers: [CharacterService, CharacterResolver],
-  exports: [CharacterService],
 })
 export class CharacterModule {}

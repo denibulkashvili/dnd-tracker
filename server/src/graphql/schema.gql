@@ -159,6 +159,15 @@ input CharacterBaseInput {
   description: String
 }
 
+type ClassEntity {
+  id: Int!
+  name: String!
+  hitDie: String!
+  spellAbility: String!
+  source: String!
+  features: String!
+}
+
 input EditCharacterBaseInput {
   id: Int
   name: String
@@ -190,22 +199,23 @@ input EditCharacterBaseInput {
 }
 
 input EditMonsterInput {
-  name: String!
+  id: Int
+  name: String
+  challenge: String
+  HP: Int
+  AC: Int
+  STR: Int
+  DEX: Int
+  CON: Int
+  INT: Int
+  WIS: Int
+  CHA: Int
   imgUrl: String
   type: String
   source: String
-  challenge: String!
-  HP: Int!
   hitDie: String
-  AC: Int!
   acType: String
-  initiativeModifier: Int!
-  STR: Int!
-  DEX: Int!
-  CON: Int!
-  INT: Int!
-  WIS: Int!
-  CHA: Int!
+  initiativeModifier: Int
   speed: String
   senses: String
   damageVulnerabilities: String
@@ -219,22 +229,23 @@ input EditMonsterInput {
 }
 
 input EditNpcInput {
-  name: String!
+  id: Int
+  name: String
+  challenge: String
+  HP: Int
+  AC: Int
+  STR: Int
+  DEX: Int
+  CON: Int
+  INT: Int
+  WIS: Int
+  CHA: Int
   imgUrl: String
   type: String
   source: String
-  challenge: String!
-  HP: Int!
   hitDie: String
-  AC: Int!
   acType: String
-  initiativeModifier: Int!
-  STR: Int!
-  DEX: Int!
-  CON: Int!
-  INT: Int!
-  WIS: Int!
-  CHA: Int!
+  initiativeModifier: Int
   speed: String
   senses: String
   damageVulnerabilities: String
@@ -312,6 +323,12 @@ type Mutation {
   addPC(input: AddPcInput!): PcEntity!
   editPC(input: EditPcInput!): PcEntity!
   deletePC(id: Float!): PcEntity!
+  addNPC(input: AddNpcInput!): NpcEntity!
+  editNPC(input: EditNpcInput!): NpcEntity!
+  deleteNPC(id: Float!): NpcEntity!
+  addMonster(input: AddMonsterInput!): MonsterEntity!
+  editMonster(input: EditMonsterInput!): MonsterEntity!
+  deleteMonster(id: Float!): MonsterEntity!
 }
 
 type NpcEntity {
@@ -377,7 +394,25 @@ type PcEntity {
 
 type Query {
   playerCharacters: [PcEntity!]!
-  playerCharacterById(id: Float!): [PcEntity!]!
+  playerCharacterById(id: Float!): PcEntity!
+  nonPlayerCharacters: [NpcEntity!]!
+  nonPlayerCharacterById(id: Float!): NpcEntity!
+  monsters: [MonsterEntity!]!
+  monsterById(id: Float!): MonsterEntity!
+}
+
+type SpellEntity {
+  id: Int!
+  level: Int!
+  name: String!
+  school: String!
+  castingTime: String!
+  duration: String!
+  range: String!
+  components: String!
+  description: String!
+  source: String!
+  classes: String!
 }
 
 type Trait {

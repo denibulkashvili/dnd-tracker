@@ -6,10 +6,16 @@ import { NpcEntity } from '../src/character/npc.entity'
 import { NpcSeed } from './seed/npc.seed'
 import { MonsterEntity } from '../src/character/monster.entity'
 import { MonsterSeed } from './seed/monster.seed'
+import { SpellSeed } from './seed/spell.seed'
+import { ClassSeed } from './seed/class.seed'
+import { SpellEntity } from '../src/spell/spell.entity'
+import { ClassEntity } from '../src/class/class.entity'
 
 const playerCharacters = PcSeed
 const nonPlayerCharacters = NpcSeed
 const monsters = MonsterSeed
+const spells = SpellSeed
+const classes = ClassSeed
 
 async function migrateDB(connection: Connection) {
   console.log('\nMigrating ...')
@@ -39,6 +45,22 @@ async function seedDB(connection: Connection) {
     .insert()
     .into(MonsterEntity)
     .values(monsters)
+    .execute()
+
+  console.info('Seeding Spells ...')
+  await connection
+    .createQueryBuilder()
+    .insert()
+    .into(SpellEntity)
+    .values(spells)
+    .execute()
+
+  console.info('Seeding Classes ...')
+  await connection
+    .createQueryBuilder()
+    .insert()
+    .into(ClassEntity)
+    .values(classes)
     .execute()
 }
 

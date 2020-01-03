@@ -34,7 +34,7 @@ export class CharacterService {
   }
 
   async addPC(input: AddPcInput): Promise<PcEntity> {
-    return this.pcRepository.save(this.pcRepository.create({ ...input }))
+    return this.pcRepository.save(this.pcRepository.create(input))
   }
 
   async editPC(input: EditPcInput): Promise<PcEntity> {
@@ -57,11 +57,11 @@ export class CharacterService {
   }
 
   async addNPC(input: AddNpcInput): Promise<NpcEntity> {
-    return this.npcRepository.save(this.npcRepository.create({ ...input }))
+    return this.npcRepository.save(this.npcRepository.create(input))
   }
 
   async editNPC(input: EditNpcInput): Promise<NpcEntity> {
-    return this.npcRepository.save({ ...input })
+    return this.npcRepository.save(input)
   }
 
   async deleteNPC(id: number): Promise<NpcEntity> {
@@ -80,11 +80,11 @@ export class CharacterService {
   }
 
   async addMonster(input: AddMonsterInput): Promise<MonsterEntity> {
-    return this.monsterRepository.save(this.monsterRepository.create({ ...input }))
+    return this.monsterRepository.save(this.monsterRepository.create(input))
   }
 
   async editMonster(input: EditMonsterInput): Promise<MonsterEntity> {
-    return this.monsterRepository.save({ ...input })
+    return this.monsterRepository.save(input)
   }
 
   async deleteMonster(id: number): Promise<MonsterEntity> {
